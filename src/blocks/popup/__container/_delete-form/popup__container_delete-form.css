@@ -1,0 +1,9 @@
+.popup__container_delete-form {
+    min-width: 430px;
+}
+
+@media screen and (max-width: 549px) {
+    .popup__container_delete-form {
+        min-width: 70%;
+    }
+}

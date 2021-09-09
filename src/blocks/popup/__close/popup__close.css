@@ -1,0 +1,34 @@
+.popup__close {
+    position: absolute;
+    right: -37px;
+    top: -37px;
+    transition: 0.7s;
+    border: none;
+    box-shadow: none;
+    width: 40px;
+    height: 40px;
+    background: url(../../../images/close_icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.popup__close:hover {
+    opacity: 0.6;
+    transition: 0.7s;
+    cursor: pointer;
+}
+
+.popup__close:active, .popup__close:focus {
+    outline: none;
+  }
+  .popup__close::-moz-focus-inner {
+    border: 0;
+}
+
+@media screen and (max-width: 549px) {
+    .popup__close {
+        transform: scale(0.65);
+        right: 0;
+        top: -50px;
+    }
+}

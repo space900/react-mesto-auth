@@ -1,0 +1,22 @@
+.info__title {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 295px;
+    min-width: 210px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+    .info__title {
+        font-size: 27px;
+        max-width: 200px;
+        margin-left: auto;
+    }
+}

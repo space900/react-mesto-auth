@@ -1,0 +1,34 @@
+.profile__btn {
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: #000000;
+    margin-left: auto;
+    padding: 0;
+    transition: 0.5s;
+    width: 150px;
+    height: 50px;
+    background: url(../../../images/profile_btn.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile__btn:hover {
+    opacity: 0.6;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.profile__btn:active, .profile__btn:focus {
+    outline: none;
+  }
+  .profile__btn::-moz-focus-inner {
+    border: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__btn {
+        margin: auto;
+        width: 100%;
+    }
+}

@@ -1,0 +1,46 @@
+.popup__submit {
+    color: #ffffff;
+    background: #000000;
+    border: none;
+    box-shadow: none;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    width: 100%;
+    max-width: 358px;
+    height: 50px;
+    transition: 0.5s;
+    padding: 0;
+    margin: 48px 0 0;
+}
+
+.popup__submit:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.popup__submit:active, .popup__submit:focus {
+    outline: none;
+  }
+  .popup__submit::-moz-focus-inner {
+    border: 0;
+}
+
+.popup__submit_disabled, .popup__submit:disabled {
+  color: grey;
+  background: white;
+  border: none;
+  border: 2px solid grey;
+}
+
+@media screen and (max-width: 449px) {
+    .popup__submit {
+      font-size: 14px;
+      line-height: 17px;
+      margin: 45px 0 0;
+    }
+}

@@ -1,0 +1,7 @@
+.photo-grid__image {
+    width: 100%;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    height: 282px;
+}

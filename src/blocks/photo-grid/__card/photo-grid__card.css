@@ -1,0 +1,9 @@
+.photo-grid__card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    position: relative;
+}
