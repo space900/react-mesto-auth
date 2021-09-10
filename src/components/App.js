@@ -109,7 +109,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    if (isAddPlacePopupOpen || isEditAvatarPopupOpen || isEditProfilePopupOpen || selectedCard.isOpen) {
+    if (isAddPlacePopupOpen || isEditAvatarPopupOpen || isEditProfilePopupOpen || selectedCard) {
       document.addEventListener('keydown', closeByEsc)
     }
     return () => document.removeEventListener('keydown', closeByEsc)
