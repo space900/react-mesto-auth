@@ -102,6 +102,19 @@ function App() {
       .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`));
   }
 
+  const closeByEsc = React.useCallback(e => {
+    if (e.key === 'Escape') {
+      closeAllPopups();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isAddPlacePopupOpen || isEditAvatarPopupOpen || isEditProfilePopupOpen || selectedCard.isOpen) {
+      document.addEventListener('keydown', closeByEsc)
+    }
+    return () => document.removeEventListener('keydown', closeByEsc)
+  }, [closeByEsc, isAddPlacePopupOpen, isEditAvatarPopupOpen, isEditProfilePopupOpen, selectedCard]);
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
