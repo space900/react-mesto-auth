@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Inter', Arial, serif;
     min-width: 320px;
+    min-height: 100vh;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

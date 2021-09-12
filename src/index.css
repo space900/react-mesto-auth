@@ -61,3 +61,10 @@
 @import url(./blocks/popup/__position/popup__position.css);
 @import url(./blocks/popup/__caption/popup__caption.css);
 @import url(./blocks/popup/__image/popup__image.css);
+@import url(./blocks/entry/entry.css);
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__form/_authorization/popup__form_authorization.css);
+@import url(./blocks/popup/__submit/_authorization/popup__submit_authorization.css);
+@import url(./blocks/popup/__text/_authorization/popup__text_authorization.css);
+@import url(./blocks/popup/__title/_authorization/popup__title_authorization.css);
+@import url(./blocks/popup/__register/popup__register.css);

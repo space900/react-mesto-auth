@@ -1,15 +1,22 @@
-import React from "react";
-
+import React, { useState } from "react";
+// import {withRouter} from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import api from "../utils/Api";
+import {routes} from '../utils/paths';
+import Login from "./Login";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import ProtectedRoute from "./ProtectedRoute";
+import Register from "./Register";
+
+
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -22,6 +29,13 @@ function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  
+  const [isSingUp, setSignUp] = React.useState(false);
+  const [isSignIn, setSignIn] = React.useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = React.useState('');
+
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -125,17 +139,33 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
-
-        <Main
-          cards={cards}
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddCardClick}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-        />
+        <Header loggedIn={loggedIn} email={email}/>
+        {/* <Route path="/login">
+          <Login />
+        </Route> */}
+        <BrowserRouter>
+        <Switch>
+          
+          <Route exact path={routes.root}>
+            <Main
+            cards={cards}
+            onEditAvatar={handleEditAvatarClick}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddCardClick}
+            onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
+          </Route>
+          <Route path={routes.login}>
+            <Login />
+          </Route>
+          <Route>
+            <Register />
+          </Route>
+        </Switch>
+        </BrowserRouter>
+        
 
         <Footer />
         <EditProfilePopup
