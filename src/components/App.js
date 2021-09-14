@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import {withRouter} from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
@@ -6,10 +6,11 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, useHistory, Redirect, withRouter } from "react-router-dom";
 import api from "../utils/Api";
 import { routes } from "../utils/constants";
 import Login from "./Login";
+import * as auth from "../utils/auth";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -31,8 +32,11 @@ function App() {
   const [isSingUp, setSignUp] = React.useState(false);
   const [isSignIn, setSignIn] = React.useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
+  const [status, setStatus] = React.useState(false);
+
+  const history = useHistory();
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -42,6 +46,71 @@ function App() {
       })
       .catch((e) => console.log(`Ошибка при получении данных: ${e}`));
   }, []);
+
+  const tokenCheck = () => {
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
+      if (jwt) {
+        auth
+          .checkToken(jwt)
+          .then((res) => {
+            if (res) {
+              setLoggedIn(true);
+              setEmail(res.data.email);
+              history.push(routes.register);
+            }
+          })
+          .catch((e) => {
+            localStorage.removeItem("jwt");
+            console.log(e);
+          });
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      history.push(routes.root);
+    }
+  }, [loggedIn, history]);
+
+  React.useEffect(() => {
+    tokenCheck();
+  }, [tokenCheck]);
+
+  function handleRegistration(emain, password) {
+    setSignUp(true);
+    auth
+      .register(email, password)
+      .then((res) => {
+        if (res) {
+          setStatus(true);
+          setIsInfoTooltipOpen(true);
+          history.push(routes.login);
+        }
+      })
+      .catch((e) => {
+        setStatus(false);
+        setIsInfoTooltipOpen(true);
+        console.log(`Ошибка при регистрации: ${e}`);
+      });
+  }
+
+  function handleLogin(email, password) {
+    setSignIn(true);
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        if (res) {
+          localStorage.setItem("jwt", res.token);
+        }
+      })
+      .catch((e) => {
+        setIsInfoTooltipOpen(true);
+        setStatus(false);
+        console.log(`Ошибка при попытке авторизации: ${e}`);
+      });
+  }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -150,26 +219,34 @@ function App() {
         </Route> */}
         <BrowserRouter>
           <Switch>
-            <Route exact path={routes.root}>
-              <Main
-                loggedIn={loggedIn}
-                cards={cards}
-                onEditAvatar={handleEditAvatarClick}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddCardClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
-              />
-            </Route>
+            <ProtectedRoute
+              exact
+              path={routes.root}
+              loggedIn={loggedIn}
+              component={Main}
+              cards={cards}
+              onEditAvatar={handleEditAvatarClick}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddCardClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+            />
             <Route path={routes.login}>
-              <Login />
+              <Login onLogin={handleLogin} />
+            </Route>
+            <Route path={routes.register}>
+              <Register onRegistration={handleRegistration} />
             </Route>
             <Route>
-              <Register path={routes.register} />
+              {loggedIn ? <Redirect to={routes.root} /> : <Redirect to={routes.login} />}
             </Route>
             <Route>
-              <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} />
+              <InfoTooltip
+                status={status}
+                isOpen={isInfoTooltipOpen}
+                onClose={closeAllPopups}
+              />
             </Route>
           </Switch>
         </BrowserRouter>
@@ -199,4 +276,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

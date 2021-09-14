@@ -9,7 +9,7 @@ function Register(props) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    props.onRegister(email, password);
+    props.onRegistration(email, password);
     setEmail("");
     setPassword("");
   }
@@ -58,4 +58,4 @@ function Register(props) {
   );
 }
 
-export default withRouter(Register);
+export default Register;
