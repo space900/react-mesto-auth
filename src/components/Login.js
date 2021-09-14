@@ -1,5 +1,5 @@
 import React from "react";
-// import {withRouter, Route} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 function Login(props) {
   const [email, setEmail] = React.useState("");
@@ -22,10 +22,7 @@ function Login(props) {
   return (
     <div className="entry">
       <h2 className="popup__title popup__title_authorization">Вход</h2>
-      <form
-        className="popup__form popup__form_authorization"
-        onSubmit={handleSubmit}
-      >
+      <form className="popup__form popup__form_authorization" onSubmit={handleSubmit}>
         <input
           required={true}
           onChange={handleEmailChange}
@@ -44,10 +41,7 @@ function Login(props) {
           className="popup__text popup__text_authorization"
           placeholder="Пароль"
         />
-        <button
-          type="submit"
-          className="popup__submit popup__submit_authorization"
-        >
+        <button type="submit" className="popup__submit popup__submit_authorization">
           Войти
         </button>
       </form>
@@ -55,4 +49,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default withRouter(Login);

@@ -6,9 +6,9 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import api from "../utils/Api";
-import {routes} from '../utils/paths';
+import { routes } from "../utils/paths";
 import Login from "./Login";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -16,26 +16,21 @@ import AddPlacePopup from "./AddPlacePopup";
 import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
 
-
-
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  
+
   const [isSingUp, setSignUp] = React.useState(false);
   const [isSignIn, setSignIn] = React.useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [email, setEmail] = React.useState('');
-
+  const [email, setEmail] = React.useState("");
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -67,9 +62,7 @@ function App() {
     api
       .setLike(card._id, !isLiked)
       .then((newCard) => {
-        setCards((cards) =>
-          cards.map((c) => (c._id === card._id ? newCard : c))
-        );
+        setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
       })
       .catch((err) => console.log(`Ошибка при попытке поставить лайк: ${err}`));
   }
@@ -91,9 +84,7 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) =>
-        console.log(`Ошибка при обновлении пользователя: ${err}`)
-      );
+      .catch((err) => console.log(`Ошибка при обновлении пользователя: ${err}`));
   }
 
   function handleUpdateAvatar(userData) {
@@ -116,18 +107,29 @@ function App() {
       .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`));
   }
 
-  const closeByEsc = React.useCallback(e => {
-    if (e.key === 'Escape') {
+  const closeByEsc = React.useCallback((e) => {
+    if (e.key === "Escape") {
       closeAllPopups();
     }
   }, []);
 
   React.useEffect(() => {
-    if (isAddPlacePopupOpen || isEditAvatarPopupOpen || isEditProfilePopupOpen || selectedCard) {
-      document.addEventListener('keydown', closeByEsc)
+    if (
+      isAddPlacePopupOpen ||
+      isEditAvatarPopupOpen ||
+      isEditProfilePopupOpen ||
+      selectedCard
+    ) {
+      document.addEventListener("keydown", closeByEsc);
     }
-    return () => document.removeEventListener('keydown', closeByEsc)
-  }, [closeByEsc, isAddPlacePopupOpen, isEditAvatarPopupOpen, isEditProfilePopupOpen, selectedCard]);
+    return () => document.removeEventListener("keydown", closeByEsc);
+  }, [
+    closeByEsc,
+    isAddPlacePopupOpen,
+    isEditAvatarPopupOpen,
+    isEditProfilePopupOpen,
+    selectedCard,
+  ]);
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -139,33 +141,31 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header loggedIn={loggedIn} email={email}/>
+        <Header loggedIn={loggedIn} email={email} />
         {/* <Route path="/login">
           <Login />
         </Route> */}
         <BrowserRouter>
-        <Switch>
-          
-          <Route exact path={routes.root}>
-            <Main
-            cards={cards}
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddCardClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-          />
-          </Route>
-          <Route path={routes.login}>
-            <Login />
-          </Route>
-          <Route>
-            <Register />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route exact path={routes.root}>
+              <Main
+                cards={cards}
+                onEditAvatar={handleEditAvatarClick}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddCardClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+              />
+            </Route>
+            <Route path={routes.login}>
+              <Login />
+            </Route>
+            <Route>
+              <Register />
+            </Route>
+          </Switch>
         </BrowserRouter>
-        
 
         <Footer />
         <EditProfilePopup

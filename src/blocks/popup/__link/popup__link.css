@@ -1,0 +1,10 @@
+.popup__link {
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.popup__link:hover {
+  border-bottom: 1px solid #ffffff;
+  opacity: 0.8;
+}

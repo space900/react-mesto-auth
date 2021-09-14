@@ -1,4 +1,6 @@
 import React from "react";
+import { routes } from "../utils/paths";
+import { Link, withRouter } from "react-router-dom";
 
 function Register(props) {
   const [email, setEmail] = React.useState("");
@@ -45,10 +47,15 @@ function Register(props) {
         <button type="submit" className="popup__submit popup__submit_authorization">
           Зарегистрироваться
         </button>
-        <p className="popup__register">Уже зарегистрированы? Войти</p>
+        <p className="popup__register">
+          Уже зарегистрированы?{" "}
+          <Link className="popup__link" to={routes.login}>
+            Войти
+          </Link>
+        </p>
       </form>
     </div>
   );
 }
 
-export default Register;
+export default withRouter(Register);
