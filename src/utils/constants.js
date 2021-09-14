@@ -10,6 +10,16 @@ export const settings = {
   errorClass: "`${inputElement.id}-error`",
 };
 
+// роуты
+export const routes = {
+  register: '/sign-up',
+  login: '/sign-in',
+  root: '/',
+};
+
+// базовый URL
+export const defaultUrl = 'https://auth.nomoreparties.co';
+
 // попапы
 export const popupType = {
   popupAddCard: ".popup_cards",
@@ -27,12 +37,12 @@ export const profileAvatar = ".profile__picture";
 export const profileAvatarButton = document.querySelector(".profile__picture");
 export const gridList = ".photo-grid__list";
 export const popupPhoto = document.querySelector(".popup_photo");
-export const popupImage = popupPhoto.querySelector(".popup__image");
-export const popupImageCaption = popupPhoto.querySelector(".popup__caption");
+// export const popupImage = popupPhoto.querySelector(".popup__image");
+// export const popupImageCaption = popupPhoto.querySelector(".popup__caption");
 export const cardTemplateSelector = ".photo-grid__list-template";
 export const editProfileForm = document.querySelector(".popup_texts");
 export const addCardModal = document.querySelector(".popup_cards");
-export const addCardForm = addCardModal.querySelector(".popup__form");
+// export const addCardForm = addCardModal.querySelector(".popup__form");
 export const openPopupEditProfileButton = document.querySelector(".info__edit-btn");
 export const openPopupAddCardButton = document.querySelector(".profile__btn");
 export const closeButtonProfile = document.querySelector(".popup__close_texts");

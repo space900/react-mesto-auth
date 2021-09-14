@@ -1,5 +1,5 @@
 import React from "react";
-import { routes } from "../utils/paths";
+import { routes } from "../utils/constants";
 import { Link, withRouter } from "react-router-dom";
 
 function Register(props) {
