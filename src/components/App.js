@@ -15,6 +15,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -25,6 +26,7 @@ function App() {
 
   const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
 
   const [isSingUp, setSignUp] = React.useState(false);
   const [isSignIn, setSignIn] = React.useState(false);
@@ -135,6 +137,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard({});
   }
 
@@ -149,6 +152,7 @@ function App() {
           <Switch>
             <Route exact path={routes.root}>
               <Main
+                loggedIn={loggedIn}
                 cards={cards}
                 onEditAvatar={handleEditAvatarClick}
                 onEditProfile={handleEditProfileClick}
@@ -162,7 +166,10 @@ function App() {
               <Login />
             </Route>
             <Route>
-              <Register />
+              <Register path={routes.register} />
+            </Route>
+            <Route>
+              <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} />
             </Route>
           </Switch>
         </BrowserRouter>
