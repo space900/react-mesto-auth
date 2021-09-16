@@ -219,6 +219,11 @@ function App() {
     selectedCard,
   ]);
 
+  function signOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -230,7 +235,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header loggedIn={loggedIn} email={email} />
+        <Header loggedIn={loggedIn} email={email} onSignOut={signOut}/>
         {/* <Route path="/login">
           <Login />
         </Route> */}

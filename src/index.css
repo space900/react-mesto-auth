@@ -70,3 +70,6 @@
 @import url(./blocks/popup/__register/popup__register.css);
 @import url(./blocks/popup/__link/popup__link.css);
 @import url(./blocks/header/__link/header__link.css);
+@import url(./blocks/header/__user/header__user.css);
+@import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__button/header__button.css);
