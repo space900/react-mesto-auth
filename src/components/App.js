@@ -9,7 +9,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import {
   Route,
   Switch,
-  BrowserRouter,
   useHistory,
   Redirect,
   withRouter,
@@ -45,7 +44,8 @@ function App() {
 
   const history = useHistory();
 
-  const messageSignUp = isSignIn ? "Регистрация" : "Зарегистрироваться";
+  const messageSignUp = isSingUp ? "Регистрация" : "Зарегистрироваться";
+  const messageSingIn = isSignIn ? "Вход" : "Войти";
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -249,7 +249,7 @@ function App() {
             onCardDelete={handleCardDelete}
           />
           <Route path={routes.login}>
-            <Login onLogin={handleLogin} />
+            <Login onLogin={handleLogin} onActionText={messageSingIn} />
           </Route>
           <Route path={routes.register}>
             <Register onRegistration={handleRegistration} onActionText={messageSignUp} />
@@ -287,4 +287,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
