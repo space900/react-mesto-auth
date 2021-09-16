@@ -261,10 +261,7 @@ function App() {
           </Route>
           <Route>
             {loggedIn ? <Redirect to={routes.root} /> : <Redirect to={routes.login} />}
-          </Route>
-          <Route>
-            <InfoTooltip status={status} isOpen={isInfoTooltipOpen} onClose={closeAllPopups} />
-          </Route>
+          </Route>  
         </Switch>
 
         <Footer />
@@ -287,6 +284,7 @@ function App() {
 
         <PopupWithForm title="Вы уверены?" name="remove" buttonTitle="Да" />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <InfoTooltip status={status} isOpen={isInfoTooltipOpen} onClose={closeAllPopups} />
       </div>
     </CurrentUserContext.Provider>
   );

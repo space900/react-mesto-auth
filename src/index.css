@@ -73,3 +73,6 @@
 @import url(./blocks/header/__user/header__user.css);
 @import url(./blocks/header/__email/header__email.css);
 @import url(./blocks/header/__button/header__button.css);
+@import url(./blocks/popup/__icon/popup__icon.css);
+@import url(./blocks/popup/__container/_type/_status/popup__container_type_status.css);
+@import url(./blocks/popup/__heading/popup__heading.css);

@@ -1,14 +1,14 @@
 export const initialCards = [];
 
 // настройки для валидации
-export const settings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__text_input",
-  submitButtonSelector: ".popup__submit",
-  inactiveButtonClass: "popup__submit_disabled",
-  inputErrorClass: "popup__text_invalid",
-  errorClass: "`${inputElement.id}-error`",
-};
+// export const settings = {
+//   formSelector: ".popup__form",
+//   inputSelector: ".popup__text_input",
+//   submitButtonSelector: ".popup__submit",
+//   inactiveButtonClass: "popup__submit_disabled",
+//   inputErrorClass: "popup__text_invalid",
+//   errorClass: "`${inputElement.id}-error`",
+// };
 
 // роуты
 export const routes = {

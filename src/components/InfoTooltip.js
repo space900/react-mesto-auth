@@ -4,16 +4,20 @@ import success_icon from "../images/success_icon.svg";
 function InfoTooltip(props) {
   return (
     <div className={`popup ${props.isOpen && "popup_is-opened"}`}>
-      <div className="popup__container">
+      <div className="popup__container popup__container_type_status">
+        <button className="popup__close"
+        aria-label="Закрыть"
+        type="button"
+        onClick={props.onClose}/>
         <img
           className="popup__icon"
-          src={props.isSuccess ? success_icon : failed_icon}
+          src={props.status ? success_icon : failed_icon}
           alt={
-            props.isSuccess ? "Иконка успешная регистрация" : "Иконка ошибка при регистрации"
+            props.status ? "Иконка успешная регистрация" : "Иконка ошибка при регистрации"
           }
         />
         <p className="popup__heading">
-          {props.isSuccess
+          {props.status
             ? "Вы успешно зарегистрировались!"
             : "Что-то пошло не так! Попробуйте ещё раз."}
         </p>
