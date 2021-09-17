@@ -1,10 +1,9 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 
 function ImagePopup({ card, onClose }) {
-    const imageFallbackContainer = useRef(null); 
+  const imageFallbackContainer = useRef(null);
 
   return (
-      
     <div className={`popup ${card.link ? "popup_is-opened" : ""}`}>
       <figure className="popup__position" ref={imageFallbackContainer}>
         <button
@@ -16,11 +15,11 @@ function ImagePopup({ card, onClose }) {
         <img
           src={`${card.link}`}
           alt={`${card.name}`}
-          className="popup__image"  
-        //   onLoad={e => {
-        //     imageFallbackContainer.current.style.width = ${e.target.offsetWidth}px
-        //     imageFallbackContainer.current.style.height = ${e.target.offsetHeight}px
-        //   }}
+          className="popup__image"
+          //   onLoad={e => {
+          //     imageFallbackContainer.current.style.width = ${e.target.offsetWidth}px
+          //     imageFallbackContainer.current.style.height = ${e.target.offsetHeight}px
+          //   }}
         />
         <p className="popup__caption">{`${card.name}`}</p>
       </figure>

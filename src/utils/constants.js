@@ -12,13 +12,13 @@ export const initialCards = [];
 
 // роуты
 export const routes = {
-  register: '/sign-up',
-  login: '/sign-in',
-  root: '/',
+  register: "/sign-up",
+  login: "/sign-in",
+  root: "/",
 };
 
 // базовый URL
-export const defaultUrl = 'https://auth.nomoreparties.co';
+export const defaultUrl = "https://auth.nomoreparties.co";
 
 // попапы
 export const popupType = {

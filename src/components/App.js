@@ -6,13 +6,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import {
-  Route,
-  Switch,
-  useHistory,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Route, Switch, useHistory, Redirect, withRouter } from "react-router-dom";
 import api from "../utils/Api";
 import { routes } from "../utils/constants";
 import Login from "./Login";
@@ -220,7 +214,7 @@ function App() {
   ]);
 
   function signOut() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
   }
 
@@ -235,7 +229,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header loggedIn={loggedIn} email={email} onSignOut={signOut}/>
+        <Header loggedIn={loggedIn} email={email} onSignOut={signOut} />
         {/* <Route path="/login">
           <Login />
         </Route> */}
@@ -261,7 +255,7 @@ function App() {
           </Route>
           <Route>
             {loggedIn ? <Redirect to={routes.root} /> : <Redirect to={routes.login} />}
-          </Route>  
+          </Route>
         </Switch>
 
         <Footer />

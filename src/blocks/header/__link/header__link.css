@@ -1,14 +1,14 @@
 .header__link {
-    align-self: center;
-    padding: 0;
-    margin: 0;
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.4s;
-    font-size: 18px;
-    line-height: 22px;
+  align-self: center;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.4s;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .header__link:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }

@@ -27,7 +27,6 @@ function Header(props) {
           </button>
         </div>
       )}
-      
     </header>
   );
 }

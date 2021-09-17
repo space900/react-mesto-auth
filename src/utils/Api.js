@@ -5,8 +5,6 @@ class Api {
     this._groupId = groupId;
   }
 
-  
-
   _checkResponse(result) {
     return result.ok ? result.json() : Promise.reject(`${result.status}`);
   }
@@ -35,7 +33,7 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._address}/${this._groupId}/users/me`, {
-      method: 'GET',
+      method: "GET",
       headers: {
         authorization: this._token,
       },
@@ -102,7 +100,6 @@ const api = new Api({
   address: "https://nomoreparties.co/v1",
   token: "47630fd7-d22e-4429-9c8d-fa77ac8ebf56",
   groupId: "cohort-26",
-})
-
+});
 
 export default api;
